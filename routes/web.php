@@ -10,10 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', 'ListingsController@index');
+Route::get('/new', 'ListingsController@new')->name('new');
+Route::post('/listings', 'ListingsController@store');
+Route::get('/listings/edit/{id}', 'ListingsController@edit');
+Route::post('/listings/edit', 'ListingsController@update');
+Route::get('/listings/delete/{id}', 'ListingsController@destroy');
 
 Auth::routes();
 
