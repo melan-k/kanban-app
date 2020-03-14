@@ -45,7 +45,7 @@ class ListingsController extends Controller
 
     public function edit(Request $request)
     {
-        $listing = Listing::find($request->id);
+        $listing = Listing::find($request->listing_id);
         return view('listing/edit', ['listing' => $listing]);
     }
 
@@ -66,7 +66,7 @@ class ListingsController extends Controller
 
     public function destroy(Request $request)
     {
-        $listing = Listing::find($request->id);
+        $listing = Listing::find($request->listing_id);
         $listing->delete();
         return redirect('/');
     }

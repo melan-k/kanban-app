@@ -2,19 +2,38 @@
 @section('content')
 
 <div class="topPage">
-    <div class="listWrapper">
-    @foreach ($listings as $listing)
-        <div class="list">
-            <div class="list_header">
-                <h2 class="list_header_title">{{ $listing->title }}</h2>
-                <div class="list_header_action">
-                    <a href="{{ url('listings/delete', $listing->id) }}" onclick="return confirm('{{ $listing->title }}を削除しても大丈夫ですか？')"><i class="fas fa-trash"></i></a>
-                    <a href="{{ url('listings/edit', $listing->id) }}"><i class="fas fa-pen"></i></a>
-                </div>
-            </div>
+  <div class="listWrapper">
+     @foreach ($listings as $listing) 
+      <div class="list">
+        <div class="list_header">
+          <h2 class="list_header_title">{{ $listing->title }}</h2>
+          <div class="list_header_action">
+            <a onclick="return confirm('{{ $listing->title }}を削除して大丈夫ですか？')" href="{{ url('/listings/delete', $listing->id) }}"><i class="fas fa-trash"></i></a>
+            <a href="{{ url('/listings/edit', $listing->id) }}"><i class="fas fa-pen"></i></a>
+          </div>
         </div>
-    @endforeach
-    </div>
-</div>
 
+        <!-- ここから追加 -->
+        <!-- カード表示部分 -->
+        <div class="cardWrapper">
+          @foreach ($listing->cards as $card) 
+          <a class="cardDetail_link" href="/listing/{{$listing->id}}/card/{{$card->id}}">
+            <div class="card">
+              <h3 class="card_title">{{ $card->title }}</h3>
+              <div class="card_detail is-exist"><i class="fas fa-bars"></i></div>
+              </div>
+          </a>
+          @endforeach
+          <div class="addCard">
+            <i class="far fa-plus-square"></i>
+            <a class="addCard_link" href="/listing/{{$listing->id}}/card/new">さらにカードを追加</a>
+          </div>
+        </div>
+        <!-- カード表示部分 -->
+        <!-- ここまで追加 -->
+
+      </div>
+     @endforeach
+  </div>
+</div>
 @endsection

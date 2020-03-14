@@ -1,0 +1,7 @@
+.cardEditPage .cardEditForm {
+  max-width: 500px;
+  margin: 70px auto 0;
+}
+.cardEditPage .cardEditForm_title, .cardEditPage .cardEditForm_memo {
+  margin-bottom: 30px;
+}
